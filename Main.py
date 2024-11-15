@@ -3,12 +3,12 @@
 # last update 10/13/23 by dH
 # last update 10/14/23
 # last Update 4/1/24 by dH
-# reviewed by dH, 4/8/24
-
 
 from Animal import Animal
 from Hyena import Hyena
 from Lion import Lion
+from Bear import Bear
+from Tiger import Tiger
 
 from _datetime import date
 
@@ -85,13 +85,31 @@ def process_one_line(one_line):
         my_lion = Lion("aName", "anID", birth_day, color, a_sex, weight, from_zoo, current_date)
         # fill in name and ID
         my_lion.name = Lion.get_lion_name(my_lion)
-        my_lion.animal_id = "Li" + str(Hyena.numOfHyenas).zfill(2)
+        my_lion.animal_id = "Li" + str(Lion.numOfLions).zfill(2)
         # add to the lion list
         list_of_lions.append(my_lion)
 
+    if "bear" in a_species:
+        # Create a bear object.
+        my_bear = Bear("aName", "anID", birth_day, color, a_sex, weight, from_zoo, current_date)
+        # fill in name and ID
+        my_bear.name = Bear.get_bear_name(my_bear)
+        my_bear.animal_id = "Be" + str(Bear.numOfBears).zfill(2)
+        # add to the bear list
+        list_of_bears.append(my_bear)
+
+    if "tiger" in a_species:
+        # Create a tiger object.
+        my_tiger = Tiger("aName", "anID", birth_day, color, a_sex, weight, from_zoo, current_date)
+        # fill in name and ID
+        my_tiger.name = Tiger.get_tiger_name(my_tiger)
+        my_tiger.animal_id = "Ti" + str(Tiger.numOfTigers).zfill(2)
+        # add to the tiger list
+        list_of_tigers.append(my_tiger)
+
 # Open arrivingAnimals.txt and read it one line at a time
 # Open the file in read mode
-file_path = r"C:\2023spring\pythonRoot\dataFiles\arrivingAnimals.txt"
+file_path = r"arrivingAnimals.txt"
 with open(file_path, "r") as file:
     # Iterate through the file line by line
     for line in file:
@@ -105,6 +123,12 @@ print(f"\n\nNumber of hyenas created: {Hyena.numOfHyenas}")
 
 # Output the static variable numOfLions
 print(f"\n\nNumber of lions created: {Lion.numOfLions}")
+
+# Output the static variable numOfBears
+print(f"\n\nNumber of bears created: {Bear.numOfBears}")
+
+# Output the static variable numOfTigers
+print(f"\n\nNumber of tigers created: {Tiger.numOfTigers}")
 
 # output the animals
 # this is zoo population
@@ -124,3 +148,34 @@ for lion in list_of_lions:
     print(lion.animal_id + ", " + lion.name + "; birthdate: " + str(lion.birth_date) + "; " + lion.color +
           "; " + lion.sex + "; " + lion.weight + "; " + lion.originating_zoo + "; arrived: " +
           str(lion.date_arrival))
+print()
+print("Bear Habitat:")
+print()
+for bear in list_of_bears:
+    print(bear.animal_id + ", " + bear.name + "; birthdate: " + str(bear.birth_date) + "; " + bear.color +
+          "; " + bear.sex + "; " + bear.weight + "; " + bear.originating_zoo + "; arrived: " +
+          str(bear.date_arrival))
+print()
+print("Tiger Habitat:")
+print()
+for tiger in list_of_tigers:
+    print(tiger.animal_id + ", " + tiger.name + "; birthdate: " + str(tiger.birth_date) + "; " + tiger.color +
+          "; " + tiger.sex + "; " + tiger.weight + "; " + tiger.originating_zoo + "; arrived: " +
+          str(tiger.date_arrival))
+
+# Open zooPopulation.txt in write mode
+with open('zooPopulation.txt', 'w') as file:
+    # Write the zoo population details to the file
+    file.write("Zookeeper's Challenge Zoo Population\n\n")
+    file.write("Hyena Habitat:\n\n")
+    for hyena in list_of_hyenas:
+        file.write(hyena.animal_id + ", " + hyena.name + "; birthdate: " + str(hyena.birth_date) + "; " + hyena.color + "; " + hyena.sex + "; " + hyena.weight + "; " + hyena.originating_zoo + "; arrived: " + str(hyena.date_arrival) + "\n")
+    file.write("\nLion Habitat:\n\n")
+    for lion in list_of_lions:
+        file.write(lion.animal_id + ", " + lion.name + "; birthdate: " + str(lion.birth_date) + "; " + lion.color + "; " + lion.sex + "; " + lion.weight + "; " + lion.originating_zoo + "; arrived: " + str(lion.date_arrival) + "\n")
+    file.write("\nBear Habitat:\n\n")
+    for bear in list_of_bears:
+        file.write(bear.animal_id + ", " + bear.name + "; birthdate: " + str(bear.birth_date) + "; " + bear.color + "; " + bear.sex + "; " + bear.weight + "; " + bear.originating_zoo + "; arrived: " + str(bear.date_arrival) + "\n")
+    file.write("\nTiger Habitat:\n\n")
+    for tiger in list_of_tigers:
+        file.write(tiger.animal_id + ", " + tiger.name + "; birthdate: " + str(tiger.birth_date) + "; " + tiger.color + "; " + tiger.sex + "; " + tiger.weight + "; " + tiger.originating_zoo + "; arrived: " + str(tiger.date_arrival) + "\n")

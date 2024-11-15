@@ -17,7 +17,4 @@ class Animal:
         # Increment the static variable when a new object is created
         # this is the only place this field's value should be change
         Animal.numOfAnimals += 1
-
-
-
-
+        
